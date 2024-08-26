@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "270613548894",
+    "project_id": "conquedoc-76db6",
+    "storage_bucket": "conquedoc-76db6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270613548894:android:8db26373b2da13853449cf",
+        "android_client_info": {
+          "package_name": "com.example.conquedoc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKT7qzT2fdaBfh02Z9NlV5G_f7YhGs5wo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
