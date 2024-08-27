@@ -37,4 +37,27 @@ class UserProvider with ChangeNotifier {
     _donanteOrganos = donanteOrganos;
     notifyListeners();
   }
+
+  void updateUserData({
+    String? name,
+    String? address,
+    String? phoneNumber,
+    String? nombreCompleto,
+    int? edad,
+    String? sexo,
+    String? grupoSanguineo,
+    String? enfermedadesBase,
+    bool? donanteOrganos,
+  }) {
+    if (name != null) _name = name;
+    if (address != null) _address = address;
+    if (phoneNumber != null) _phoneNumber = phoneNumber;
+    if (nombreCompleto != null) _nombreCompleto = nombreCompleto;
+    if (edad != null) _edad = edad;
+    if (sexo != null) _sexo = sexo;
+    if (grupoSanguineo != null) _grupoSanguineo = grupoSanguineo;
+    if (enfermedadesBase != null) _enfermedadesBase = enfermedadesBase;
+    if (donanteOrganos != null) _donanteOrganos = donanteOrganos;
+    notifyListeners();
+  }
 }

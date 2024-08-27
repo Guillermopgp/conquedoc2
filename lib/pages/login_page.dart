@@ -47,66 +47,99 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Iniciar Sesión')),
+      appBar: AppBar(
+        title: const Text('Iniciar Sesión'),
+        backgroundColor: Colors.cyan,
+      ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                  labelText: 'Correo electrónico',
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
-                  prefixIcon: Icon(Icons.email),
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                SizedBox(height: 40),
+                Icon(
+                  Icons.local_hospital,
+                  size: 100,
+                  color: Colors.cyan,
                 ),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) => _validateEmail(value),
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                  labelText: 'Contraseña',
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
-                  prefixIcon: Icon(Icons.lock),
-                  suffixIcon: IconButton(
-                    icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
-                    onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+                SizedBox(height: 40),
+                TextFormField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    labelText: 'Correo electrónico',
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                    prefixIcon: Icon(Icons.email, color: Colors.cyan),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) => _validateEmail(value),
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    labelText: 'Contraseña',
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                    prefixIcon: Icon(Icons.lock, color: Colors.cyan),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                        color: Colors.cyan,
+                      ),
+                      onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                  ),
+                  obscureText: _obscurePassword,
+                  validator: (value) => _validatePassword(value),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  children: [
+                    Checkbox(
+                      value: _rememberMe,
+                      onChanged: (bool? value) => setState(() => _rememberMe = value ?? false),
+                      activeColor: Colors.cyan,
+                    ),
+                    Text('Recordar correo electrónico'),
+                  ],
+                ),
+                SizedBox(height: 30),
+                _isLoading
+                    ? Center(child: CircularProgressIndicator(color: Colors.cyan))
+                    : ElevatedButton(
+                  onPressed: _loginUser,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.cyan,
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                  ),
+                  child: Text(
+                    'Iniciar Sesión',
+                    style: TextStyle(fontSize: 18),
                   ),
                 ),
-                obscureText: _obscurePassword,
-                validator: (value) => _validatePassword(value),
-              ),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  Checkbox(
-                    value: _rememberMe,
-                    onChanged: (bool? value) => setState(() => _rememberMe = value ?? false),
+                SizedBox(height: 20),
+                TextButton(
+                  onPressed: () => Navigator.pushNamed(context, '/register'),
+                  child: Text(
+                    '¿No tienes una cuenta? Regístrate',
+                    style: TextStyle(color: Colors.cyan),
                   ),
-                  const Text('Recordar correo electrónico'),
-                ],
-              ),
-              const SizedBox(height: 16),
-              _isLoading
-                  ? CircularProgressIndicator()
-                  : ElevatedButton(
-                onPressed: _loginUser,
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
-                  backgroundColor: Colors.cyan,
                 ),
-                child: const Text('Iniciar Sesión'),
-              ),
-              const SizedBox(height: 16),
-              TextButton(
-                onPressed: () => Navigator.pushNamed(context, '/register'),
-                child: const Text('¿No tienes una cuenta? Regístrate'),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -140,7 +173,8 @@ class _LoginPageState extends State<LoginPage> {
     if (value == null || value.isEmpty) {
       return 'Por favor, ingresa tu correo electrónico';
     }
-    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+    final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    if (!emailRegExp.hasMatch(value)) {
       return 'Por favor, ingresa un correo electrónico válido';
     }
     return null;

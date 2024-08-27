@@ -15,11 +15,14 @@ dependencies:
   image_picker: ^0.8.4+4
   cupertino_icons: ^1.0.6
   shared_preferences: ^2.0.6
-  url_launcher: ^6.0.20
+  url_launcher: ^6.1.10
   # Firebase dependencies
   firebase_core: ^2.13.0
   firebase_auth: ^4.6.1
   cloud_firestore: ^4.7.1
+  http: ^0.13.3
+  geolocator: ^9.0.2
+
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +33,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/data/especialidades.json
     - assets/avatar.png
     - assets/ficha_medica.png
     - assets/centros_medicos.png

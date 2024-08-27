@@ -1,0 +1,214 @@
+{
+  "especialidades": [
+    {
+      "nombre": "Cardiología",
+      "establecimientos": [
+        {
+          "nombre": "Hospital del Corazón",
+          "profesionales": [
+            {"nombre": "Dr. Juan Pérez", "id": "card001", "experiencia": "15 años", "subespecialidad": "Cardiología intervencionista"},
+            {"nombre": "Dra. María López", "id": "card002", "experiencia": "12 años", "subespecialidad": "Electrofisiología cardíaca"},
+            {"nombre": "Dr. Carlos Rodríguez", "id": "card003", "experiencia": "20 años", "subespecialidad": "Cardiología pediátrica"},
+            {"nombre": "Dra. Ana Martínez", "id": "card004", "experiencia": "10 años", "subespecialidad": "Ecocardiografía"},
+            {"nombre": "Dr. Pedro Sánchez", "id": "card005", "experiencia": "18 años", "subespecialidad": "Rehabilitación cardíaca"}
+          ]
+        },
+        {
+          "nombre": "Clínica Cardiovascular",
+          "profesionales": [
+            {"nombre": "Dra. Laura González", "id": "card006", "experiencia": "14 años", "subespecialidad": "Cardio-oncología"},
+            {"nombre": "Dr. Roberto Fernández", "id": "card007", "experiencia": "16 años", "subespecialidad": "Cardiología nuclear"},
+            {"nombre": "Dra. Sofía Torres", "id": "card008", "experiencia": "11 años", "subespecialidad": "Cardiología preventiva"},
+            {"nombre": "Dr. Andrés Morales", "id": "card009", "experiencia": "19 años", "subespecialidad": "Insuficiencia cardíaca"},
+            {"nombre": "Dra. Carmen Vega", "id": "card010", "experiencia": "13 años", "subespecialidad": "Cardiopatías congénitas"}
+          ]
+        },
+        {
+          "nombre": "Centro Cardíaco Integral",
+          "profesionales": [
+            {"nombre": "Dr. Ernesto Vargas", "id": "card011", "experiencia": "22 años", "subespecialidad": "Cirugía cardiovascular"},
+            {"nombre": "Dra. Patricia Rojas", "id": "card012", "experiencia": "17 años", "subespecialidad": "Cardiología del deporte"},
+            {"nombre": "Dr. Gustavo Herrera", "id": "card013", "experiencia": "15 años", "subespecialidad": "Cardiogeriatría"},
+            {"nombre": "Dra. Valentina Paz", "id": "card014", "experiencia": "9 años", "subespecialidad": "Cardiología de la mujer"},
+            {"nombre": "Dr. Ricardo Soto", "id": "card015", "experiencia": "21 años", "subespecialidad": "Hipertensión pulmonar"}
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Kinesiología",
+      "establecimientos": [
+        {
+          "nombre": "Centro de Rehabilitación Física",
+          "profesionales": [
+            {"nombre": "Lic. Alejandro Ruiz", "id": "kine001", "experiencia": "10 años", "especialidad": "Rehabilitación deportiva"},
+            {"nombre": "Lic. Patricia Molina", "id": "kine002", "experiencia": "15 años", "especialidad": "Fisioterapia respiratoria"},
+            {"nombre": "Lic. Diego Castro", "id": "kine003", "experiencia": "8 años", "especialidad": "Terapia manual ortopédica"},
+            {"nombre": "Lic. Valentina Soto", "id": "kine004", "experiencia": "12 años", "especialidad": "Neurorrehabilitación"},
+            {"nombre": "Lic. Javier Mendoza", "id": "kine005", "experiencia": "14 años", "especialidad": "Rehabilitación geriátrica"}
+          ]
+        },
+        {
+          "nombre": "Clínica de Terapia Física Avanzada",
+          "profesionales": [
+            {"nombre": "Lic. Camila Vega", "id": "kine006", "experiencia": "11 años", "especialidad": "Fisioterapia pediátrica"},
+            {"nombre": "Lic. Rodrigo Pinto", "id": "kine007", "experiencia": "9 años", "especialidad": "Rehabilitación cardiovascular"},
+            {"nombre": "Lic. Fernanda Ortiz", "id": "kine008", "experiencia": "13 años", "especialidad": "Terapia vestibular"},
+            {"nombre": "Lic. Matías Silva", "id": "kine009", "experiencia": "7 años", "especialidad": "Fisioterapia oncológica"},
+            {"nombre": "Lic. Carolina Muñoz", "id": "kine010", "experiencia": "16 años", "especialidad": "Rehabilitación de columna"}
+          ]
+        },
+        {
+          "nombre": "Instituto de Kinesiología Integral",
+          "profesionales": [
+            {"nombre": "Lic. Gabriel Sánchez", "id": "kine011", "experiencia": "18 años", "especialidad": "Terapia de mano"},
+            {"nombre": "Lic. Andrea Rojas", "id": "kine012", "experiencia": "10 años", "especialidad": "Rehabilitación pelviperineal"},
+            {"nombre": "Lic. Felipe Contreras", "id": "kine013", "experiencia": "14 años", "especialidad": "Fisioterapia invasiva"},
+            {"nombre": "Lic. Daniela Araya", "id": "kine014", "experiencia": "9 años", "especialidad": "Rehabilitación laboral"},
+            {"nombre": "Lic. Ignacio Vera", "id": "kine015", "experiencia": "12 años", "especialidad": "Kinesiotaping"}
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Medicina General",
+      "establecimientos": [
+        {
+          "nombre": "Policlínico Central",
+          "profesionales": [
+            {"nombre": "Dr. Fernando Silva", "id": "med001", "experiencia": "20 años", "enfoque": "Medicina familiar"},
+            {"nombre": "Dra. Gabriela Rojas", "id": "med002", "experiencia": "15 años", "enfoque": "Medicina preventiva"},
+            {"nombre": "Dr. Héctor Navarro", "id": "med003", "experiencia": "18 años", "enfoque": "Geriatría"},
+            {"nombre": "Dra. Isabel Paredes", "id": "med004", "experiencia": "12 años", "enfoque": "Medicina del adolescente"},
+            {"nombre": "Dr. Jorge Guzmán", "id": "med005", "experiencia": "22 años", "enfoque": "Medicina interna"}
+          ]
+        },
+        {
+          "nombre": "Centro Médico Comunitario",
+          "profesionales": [
+            {"nombre": "Dra. Karla Mendoza", "id": "med006", "experiencia": "14 años", "enfoque": "Salud mental"},
+            {"nombre": "Dr. Luis Vargas", "id": "med007", "experiencia": "19 años", "enfoque": "Medicina del trabajo"},
+            {"nombre": "Dra. Mónica Castro", "id": "med008", "experiencia": "16 años", "enfoque": "Nutrición clínica"},
+            {"nombre": "Dr. Nicolás Soto", "id": "med009", "experiencia": "11 años", "enfoque": "Medicina del deporte"},
+            {"nombre": "Dra. Olga Rivas", "id": "med010", "experiencia": "21 años", "enfoque": "Cuidados paliativos"}
+          ]
+        },
+        {
+          "nombre": "Clínica de Atención Primaria",
+          "profesionales": [
+            {"nombre": "Dr. Pablo Muñoz", "id": "med011", "experiencia": "17 años", "enfoque": "Pediatría general"},
+            {"nombre": "Dra. Quintina Herrera", "id": "med012", "experiencia": "13 años", "enfoque": "Salud de la mujer"},
+            {"nombre": "Dr. Raúl Espinoza", "id": "med013", "experiencia": "23 años", "enfoque": "Enfermedades infecciosas"},
+            {"nombre": "Dra. Sandra Ortiz", "id": "med014", "experiencia": "10 años", "enfoque": "Dermatología general"},
+            {"nombre": "Dr. Tomás Vidal", "id": "med015", "experiencia": "19 años", "enfoque": "Medicina de urgencias"}
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Radiología",
+      "establecimientos": [
+        {
+          "nombre": "Centro de Imágenes Médicas",
+          "profesionales": [
+            {"nombre": "Dr. Ricardo Vargas", "id": "rad001", "experiencia": "18 años", "especialidad": "Radiología general"},
+            {"nombre": "Dra. Camila Espinoza", "id": "rad002", "experiencia": "14 años", "especialidad": "Neurorradiología"},
+            {"nombre": "Dr. Sebastián Rivas", "id": "rad003", "experiencia": "16 años", "especialidad": "Radiología intervencionista"},
+            {"nombre": "Dra. Daniela Ortiz", "id": "rad004", "experiencia": "12 años", "especialidad": "Radiología pediátrica"},
+            {"nombre": "Dr. Gustavo Muñoz", "id": "rad005", "experiencia": "20 años", "especialidad": "Radiología musculoesquelética"}
+          ]
+        },
+        {
+          "nombre": "Hospital de Diagnóstico Avanzado",
+          "profesionales": [
+            {"nombre": "Dra. Valentina Soto", "id": "rad006", "experiencia": "15 años", "especialidad": "Radiología de mama"},
+            {"nombre": "Dr. Andrés Rojas", "id": "rad007", "experiencia": "19 años", "especialidad": "Radiología cardiovascular"},
+            {"nombre": "Dra. Beatriz Castro", "id": "rad008", "experiencia": "13 años", "especialidad": "Radiología abdominal"},
+            {"nombre": "Dr. César Paredes", "id": "rad009", "experiencia": "17 años", "especialidad": "Radiología de emergencias"},
+            {"nombre": "Dra. Diana Vega", "id": "rad010", "experiencia": "11 años", "especialidad": "Radiología oncológica"}
+          ]
+        },
+        {
+          "nombre": "Clínica de Radiología Especializada",
+          "profesionales": [
+            {"nombre": "Dr. Eduardo Silva", "id": "rad011", "experiencia": "22 años", "especialidad": "Radiología torácica"},
+            {"nombre": "Dra. Francisca Navarro", "id": "rad012", "experiencia": "16 años", "especialidad": "Radiología dental"},
+            {"nombre": "Dr. Gabriel Herrera", "id": "rad013", "experiencia": "14 años", "especialidad": "Radiología nuclear"},
+            {"nombre": "Dra. Helena Pinto", "id": "rad014", "experiencia": "18 años", "especialidad": "Radiología vascular"},
+            {"nombre": "Dr. Ignacio Morales", "id": "rad015", "experiencia": "20 años", "especialidad": "Radiología de cabeza y cuello"}
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Dental",
+      "establecimientos": [
+        {
+          "nombre": "Clínica Odontológica Sonrisas",
+          "profesionales": [
+            {"nombre": "Dr. Mauricio Flores", "id": "dent001", "experiencia": "15 años", "especialidad": "Odontología general"},
+            {"nombre": "Dra. Natalia Herrera", "id": "dent002", "experiencia": "12 años", "especialidad": "Ortodoncia"},
+            {"nombre": "Dr. Oscar Jiménez", "id": "dent003", "experiencia": "18 años", "especialidad": "Cirugía maxilofacial"},
+            {"nombre": "Dra. Paula Contreras", "id": "dent004", "experiencia": "10 años", "especialidad": "Odontopediatría"},
+            {"nombre": "Dr. Rodrigo Araya", "id": "dent005", "experiencia": "14 años", "especialidad": "Periodoncia"}
+          ]
+        },
+        {
+          "nombre": "Centro Dental Integral",
+          "profesionales": [
+            {"nombre": "Dra. Sofía Vidal", "id": "dent006", "experiencia": "16 años", "especialidad": "Endodoncia"},
+            {"nombre": "Dr. Tomás Rivas", "id": "dent007", "experiencia": "13 años", "especialidad": "Implantología"},
+            {"nombre": "Dra. Úrsula Soto", "id": "dent008", "experiencia": "11 años", "especialidad": "Estética dental"},
+            {"nombre": "Dr. Vicente Muñoz", "id": "dent009", "experiencia": "19 años", "especialidad": "Prostodoncia"},
+            {"nombre": "Dra. Ximena Parra", "id": "dent010", "experiencia": "17 años", "especialidad": "Patología oral"}
+          ]
+        },
+        {
+          "nombre": "Instituto de Salud Bucal",
+          "profesionales": [
+            {"nombre": "Dr. Yago Espinoza", "id": "dent011", "experiencia": "20 años", "especialidad": "Rehabilitación oral"},
+            {"nombre": "Dra. Zoe Castro", "id": "dent012", "experiencia": "14 años", "especialidad": "Odontología forense"},
+            {"nombre": "Dr. Andrés Molina", "id": "dent013", "experiencia": "16 años", "especialidad": "Odontología geriátrica"},
+            {"nombre": "Dra. Beatriz Silva", "id": "dent014", "experiencia": "12 años", "especialidad": "Odontología preventiva"},
+            {"nombre": "Dr. Carlos Rojas", "id": "dent015", "experiencia": "18 años", "especialidad": "Cirugía oral"}
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Maternidad",
+      "establecimientos": [
+        {
+          "nombre": "Hospital Materno Infantil",
+          "profesionales": [
+            {"nombre": "Dra. Andrea Mendoza", "id": "mat001", "experiencia": "15 años", "especialidad": "Obstetricia"},
+            {"nombre": "Dr. Francisco Rivera", "id": "mat002", "experiencia": "12 años", "especialidad": "Ginecología"},
+            {"nombre": "Dra. Mariela Vargas", "id": "mat003", "experiencia": "18 años", "especialidad": "Neonatología"},
+            {"nombre": "Dr. Carlos Espinoza", "id": "mat004", "experiencia": "10 años", "especialidad": "Medicina materno-fetal"},
+            {"nombre": "Dra. Camila Pérez", "id": "mat005", "experiencia": "14 años", "especialidad": "Lactancia materna"}
+          ]
+        },
+        {
+          "nombre": "Clínica de la Mujer",
+          "profesionales": [
+            {"nombre": "Dra. Lorena Paredes", "id": "mat006", "experiencia": "16 años", "especialidad": "Endocrinología ginecológica"},
+            {"nombre": "Dr. Javier Castillo", "id": "mat007", "experiencia": "11 años", "especialidad": "Ginecología oncológica"},
+            {"nombre": "Dra. Isabel Navarro", "id": "mat008", "experiencia": "19 años", "especialidad": "Medicina reproductiva"},
+            {"nombre": "Dr. Enrique López", "id": "mat009", "experiencia": "20 años", "especialidad": "Cirugía ginecológica"},
+            {"nombre": "Dra. Luisa Fernández", "id": "mat010", "experiencia": "13 años", "especialidad": "Cuidados prenatales"}
+          ]
+        },
+        {
+          "nombre": "Centro de Salud Maternal",
+          "profesionales": [
+            {"nombre": "Dr. Rafael Jiménez", "id": "mat011", "experiencia": "17 años", "especialidad": "Ginecología pediátrica"},
+            {"nombre": "Dra. Sonia Salinas", "id": "mat012", "experiencia": "14 años", "especialidad": "Embarazo de alto riesgo"},
+            {"nombre": "Dr. Mario Guzmán", "id": "mat013", "experiencia": "21 años", "especialidad": "Ecografía obstétrica"},
+            {"nombre": "Dra. Carmen Gómez", "id": "mat014", "experiencia": "10 años", "especialidad": "Psicología perinatal"},
+            {"nombre": "Dr. Rodrigo Ortiz", "id": "mat015", "experiencia": "18 años", "especialidad": "Parto humanizado"}
+          ]
+        }
+      ]
+    }
+  ]
+}

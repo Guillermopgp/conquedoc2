@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import '../providers/user_provider.dart';
 import 'centros_medicos_page.dart';
 
@@ -18,7 +15,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
-    _formattedDate = DateFormat.yMMMMd('en_US').format(DateTime.now());
+    _formattedDate = DateFormat.yMMMMd('es_ES').format(DateTime.now());
   }
 
   @override
@@ -27,131 +24,94 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('ConQueDoc?'),
+        backgroundColor: Colors.cyan,
       ),
       drawer: Drawer(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: ListView(
           children: <Widget>[
-            Column(
-              children: [
-                DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Center(
-                        child: CircleAvatar(
-                          radius: 30,
-                          backgroundImage: AssetImage('assets/avatar.png'), // Ensure you have an avatar image in assets
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Bienvenido, ${userProvider.name}',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        userProvider.address,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        userProvider.phoneNumber,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Perfil'),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/profile');
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.settings),
-                  title: Text('Configuracion'),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/settings');
-                  },
-                ),
-              ],
+            UserAccountsDrawerHeader(
+              accountName: Text(userProvider.name),
+              accountEmail: Text(userProvider.address),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage('assets/avatar.png'),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.cyan,
+              ),
             ),
             ListTile(
-              leading: Icon(Icons.logout),
+              leading: Icon(Icons.person, color: Colors.cyan),
+              title: Text('Perfil'),
+              onTap: () {
+                Navigator.pushNamed(context, '/profile');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings, color: Colors.cyan),
+              title: Text('Configuración'),
+              onTap: () {
+                Navigator.pushNamed(context, '/settings');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout, color: Colors.cyan),
               title: Text('Cerrar Sesión'),
-              onTap: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                await prefs.clear();
-                Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+              onTap: () {
+                // Implementar lógica de cierre de sesión
+                Navigator.pushReplacementNamed(context, '/login');
               },
             ),
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('Tu App de Gestión de Salud', style: TextStyle(fontSize: 24)),
-            SizedBox(height: 16),
-            Text(_formattedDate, style: TextStyle(fontSize: 18)),
-            SizedBox(height: 16),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                children: <Widget>[
-                  _buildGridItem(context, 'assets/ficha_medica.png', 'Ficha Médica', '/fichaMedica'),
-                  _buildGridItem(context, 'assets/centros_medicos.png', 'Centros Médicos', 'centros_medicos'),
-                  _buildGridItem(context, 'assets/especialidades.png', 'Especialidades', '/especialidades'),
-                  _buildGridItem(context, 'assets/profesionales.png', 'Profesionales', '/profesionales'),
-                  _buildGridItem(context, 'assets/coberturas.png', 'Coberturas', '/coberturas', centerIcon: true),
-                ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Tu App de Gestión de Salud',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.cyan[800]),
               ),
-            ),
-          ],
+              SizedBox(height: 16),
+              Text(_formattedDate, style: TextStyle(fontSize: 18, color: Colors.grey[600])),
+              SizedBox(height: 24),
+              _buildListItem(context, 'assets/ficha_medica.png', 'Ficha Médica', '/fichaMedica'),
+              _buildListItem(context, 'assets/centros_medicos.png', 'Centros Médicos', '/centrosMedicos'),
+              _buildListItem(context, 'assets/especialidades.png', 'Especialidades', '/especialidades'),
+              _buildListItem(context, 'assets/coberturas.png', 'Coberturas', '/coberturas'),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildGridItem(BuildContext context, String assetPath, String title, String route, {bool centerIcon = false}) {
-    return GestureDetector(
-      onTap: () {
-        if (route == 'centros_medicos') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CentrosMedicosPage()),
-          );
-        } else {
+  Widget _buildListItem(BuildContext context, String assetPath, String title, String route) {
+    return Card(
+      elevation: 4,
+      margin: EdgeInsets.symmetric(vertical: 8),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: InkWell(
+        onTap: () {
           Navigator.pushNamed(context, route);
-        }
-      },
-      child: Card(
-        elevation: 4,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            centerIcon
-                ? Center(child: Image.asset(assetPath, width: 50, height: 50))
-                : Image.asset(assetPath, width: 50, height: 50),
-            SizedBox(height: 16),
-            Text(title, style: TextStyle(fontSize: 18)),
-          ],
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            children: [
+              Image.asset(assetPath, width: 50, height: 50),
+              SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  title,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Icon(Icons.arrow_forward_ios, color: Colors.cyan),
+            ],
+          ),
         ),
       ),
     );

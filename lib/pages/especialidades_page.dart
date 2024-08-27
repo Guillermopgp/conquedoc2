@@ -1,52 +1,166 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart';
+import 'dart:convert';
+import 'profesionales_page.dart';
 
-class EspecialidadesPage extends StatelessWidget {
+class EspecialidadesPage extends StatefulWidget {
+  @override
+  _EspecialidadesPageState createState() => _EspecialidadesPageState();
+}
+
+class _EspecialidadesPageState extends State<EspecialidadesPage> {
+  List<dynamic> especialidades = [];
+  List<dynamic> filteredResultados = [];
+  TextEditingController _searchController = TextEditingController();
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    loadEspecialidades();
+  }
+
+  Future<void> loadEspecialidades() async {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      String jsonString = await rootBundle.loadString('assets/data/especialidades.json');
+      final jsonResponse = json.decode(jsonString);
+      setState(() {
+        especialidades = jsonResponse['especialidades'];
+      });
+    } catch (e) {
+      print('Error al cargar Especialidades: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error al cargar Especialidades')),
+      );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  void _filterEspecialidades() {
+    String query = _searchController.text.toLowerCase();
+    if (query.isEmpty) {
+      setState(() {
+        filteredResultados = [];
+      });
+    } else {
+      setState(() {
+        filteredResultados = especialidades.where((especialidad) {
+          final nombreEspecialidad = especialidad['nombre'].toLowerCase();
+          return nombreEspecialidad.contains(query);
+        }).expand((especialidad) {
+          return (especialidad['establecimientos'] as List).expand((establecimiento) {
+            return (establecimiento['profesionales'] as List).map((profesional) {
+              return {
+                'especialidad': especialidad['nombre'],
+                'establecimiento': establecimiento['nombre'],
+                'profesional': profesional,
+              };
+            });
+          });
+        }).toList();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Especialidades'),
+        backgroundColor: Colors.cyan,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: GridView.count(
-          crossAxisCount: 2,
-          children: <Widget>[
-            _buildSpecialtyCard(context, 'assets/cardiologia.png', 'Cardiología', 'https://www.redclinica.cl/plantilla/especialidades/cardiologia.aspx'),
-            _buildSpecialtyCard(context, 'assets/kinesiologia.png', 'Kinesiología', 'https://www.meds.cl/especialidades/kinesiologia/'),
-            _buildSpecialtyCard(context, 'assets/medicina_general.png', 'Medicina General', 'https://www.integramedica.cl/integramedica/medicina-general'),
-            _buildSpecialtyCard(context, 'assets/radiologia.png', 'Radiología', 'https://medicina.uc.cl/postgrado/especialidades-medicas/especialidades-primarias-2/radiologia/'),
-            _buildSpecialtyCard(context, 'assets/dental.png', 'Dental', 'https://www.unosalud.cl/?utm_source=google&utm_medium=cpc&utm_campaign=20230824_brand_camping&utm_content=adset_02_brand_campaing_term_brand&gad_source=1&gclid=CjwKCAjw8fu1BhBsEiwAwDrsjGLOtFUbdL2xRoteUZbPvFzmkZwVDgpWQ2ISo1ZEjpSCc0hxKeD41RoCop8QAvD_BwE'),
-            _buildSpecialtyCard(context, 'assets/maternidad.png', 'Maternidad', 'https://www.clinicaalemana.cl/especialidades/maternidad-y-familia/maternidad-integral'),
-          ],
-        ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _searchController,
+                    decoration: InputDecoration(
+                      labelText: 'Buscar especialidad',
+                      prefixIcon: Icon(Icons.search),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey[200],
+                    ),
+                  ),
+                ),
+                SizedBox(width: 16),
+                ElevatedButton(
+                  onPressed: _filterEspecialidades,
+                  child: Text('Buscar'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.cyan,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: isLoading
+                ? Center(child: CircularProgressIndicator(color: Colors.cyan))
+                : filteredResultados.isEmpty
+                ? Center(child: Text('No se encontraron resultados', style: TextStyle(fontSize: 18)))
+                : ListView.builder(
+              itemCount: filteredResultados.length,
+              itemBuilder: (context, index) {
+                final resultado = filteredResultados[index];
+                return _buildListItem(
+                  context,
+                  Icons.medical_services,
+                  '${resultado['profesional']['nombre']} - ${resultado['establecimiento']}',
+                  resultado['especialidad'],
+                  resultado['profesional'],
+                  resultado['establecimiento'],
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildSpecialtyCard(BuildContext context, String assetPath, String title, String url) {
-    return GestureDetector(
-      onTap: () => _launchURL(url),
-      child: Card(
-        elevation: 4,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(assetPath, width: 50, height: 50),
-            SizedBox(height: 16),
-            Text(title, style: TextStyle(fontSize: 18)),
-          ],
+  Widget _buildListItem(BuildContext context, IconData icon, String title, String especialidad, Map<String, dynamic> profesional, String establecimiento) {
+    return Card(
+      elevation: 4,
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.cyan,
+          child: Icon(icon, color: Colors.white),
         ),
+        title: Text(title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        subtitle: Text(especialidad),
+        trailing: Icon(Icons.arrow_forward_ios),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProfesionalesPage(
+                profesional: profesional,
+                especialidad: especialidad,
+                establecimiento: establecimiento,
+              ),
+            ),
+          );
+        },
       ),
     );
-  }
-
-  void _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }
