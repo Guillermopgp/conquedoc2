@@ -57,7 +57,7 @@ class ProfesionalesPage extends StatelessWidget {
               profesional['subespecialidad'] ?? profesional['especialidad'] ?? 'No especificada',
             ]),
             _buildCard('Formación y Diplomados', [
-              'Universidad: ${profesional['universidad'] ?? 'No especificada'}',
+              'Universidad: ${profesional['universidad'] ?? 'Universidad Autonoma'}',
               'Diplomados: ${profesional['diplomados'] ?? 'Información no disponible'}',
             ]),
             _buildCard('Horarios de Atención', [
