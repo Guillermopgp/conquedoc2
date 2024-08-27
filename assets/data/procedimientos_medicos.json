@@ -1,0 +1,276 @@
+{
+  "procedimientos": [
+    {
+      "id": "PM001",
+      "nombre": "Consulta Médica General",
+      "valorBruto": 30000,
+      "valorFonasa": 12000,
+      "valorParticular": 30000,
+      "valorFinalConIVA": 35700
+    },
+    {
+      "id": "PM002",
+      "nombre": "Radiografía de Tórax",
+      "valorBruto": 45000,
+      "valorFonasa": 18000,
+      "valorParticular": 45000,
+      "valorFinalConIVA": 53550
+    },
+    {
+      "id": "PM003",
+      "nombre": "Ecografía Abdominal",
+      "valorBruto": 60000,
+      "valorFonasa": 24000,
+      "valorParticular": 60000,
+      "valorFinalConIVA": 71400
+    },
+    {
+      "id": "PM004",
+      "nombre": "Examen de Sangre Completo",
+      "valorBruto": 35000,
+      "valorFonasa": 14000,
+      "valorParticular": 35000,
+      "valorFinalConIVA": 41650
+    },
+    {
+      "id": "PM005",
+      "nombre": "Electrocardiograma",
+      "valorBruto": 25000,
+      "valorFonasa": 10000,
+      "valorParticular": 25000,
+      "valorFinalConIVA": 29750
+    },
+    {
+      "id": "PM006",
+      "nombre": "Colonoscopía",
+      "valorBruto": 80000,
+      "valorFonasa": 32000,
+      "valorParticular": 80000,
+      "valorFinalConIVA": 95200
+    },
+    {
+      "id": "PM007",
+      "nombre": "Endoscopía Digestiva",
+      "valorBruto": 75000,
+      "valorFonasa": 30000,
+      "valorParticular": 75000,
+      "valorFinalConIVA": 89250
+    },
+    {
+      "id": "PM008",
+      "nombre": "Mamografía",
+      "valorBruto": 40000,
+      "valorFonasa": 16000,
+      "valorParticular": 40000,
+      "valorFinalConIVA": 47600
+    },
+    {
+      "id": "PM009",
+      "nombre": "Resonancia Magnética",
+      "valorBruto": 120000,
+      "valorFonasa": 48000,
+      "valorParticular": 120000,
+      "valorFinalConIVA": 142800
+    },
+    {
+      "id": "PM010",
+      "nombre": "Tomografía Computarizada",
+      "valorBruto": 110000,
+      "valorFonasa": 44000,
+      "valorParticular": 110000,
+      "valorFinalConIVA": 130900
+    },
+    {
+      "id": "PM011",
+      "nombre": "Biopsia",
+      "valorBruto": 55000,
+      "valorFonasa": 22000,
+      "valorParticular": 55000,
+      "valorFinalConIVA": 65450
+    },
+    {
+      "id": "PM012",
+      "nombre": "Cirugía Ambulatoria",
+      "valorBruto": 150000,
+      "valorFonasa": 60000,
+      "valorParticular": 150000,
+      "valorFinalConIVA": 178500
+    },
+    {
+      "id": "PM013",
+      "nombre": "Vacunación",
+      "valorBruto": 20000,
+      "valorFonasa": 8000,
+      "valorParticular": 20000,
+      "valorFinalConIVA": 23800
+    },
+    {
+      "id": "PM014",
+      "nombre": "Terapia Física",
+      "valorBruto": 45000,
+      "valorFonasa": 18000,
+      "valorParticular": 45000,
+      "valorFinalConIVA": 53550
+    },
+    {
+      "id": "PM015",
+      "nombre": "Examen de Vista",
+      "valorBruto": 25000,
+      "valorFonasa": 10000,
+      "valorParticular": 25000,
+      "valorFinalConIVA": 29750
+    },
+    {
+      "id": "PM016",
+      "nombre": "Examen de Audición",
+      "valorBruto": 35000,
+      "valorFonasa": 14000,
+      "valorParticular": 35000,
+      "valorFinalConIVA": 41650
+    },
+    {
+      "id": "PM017",
+      "nombre": "Examen de Papanicolaou",
+      "valorBruto": 30000,
+      "valorFonasa": 12000,
+      "valorParticular": 30000,
+      "valorFinalConIVA": 35700
+    },
+    {
+      "id": "PM018",
+      "nombre": "Examen de Glicemia",
+      "valorBruto": 15000,
+      "valorFonasa": 6000,
+      "valorParticular": 15000,
+      "valorFinalConIVA": 17850
+    },
+    {
+      "id": "PM019",
+      "nombre": "Test de Esfuerzo",
+      "valorBruto": 50000,
+      "valorFonasa": 20000,
+      "valorParticular": 50000,
+      "valorFinalConIVA": 59500
+    },
+    {
+      "id": "PM020",
+      "nombre": "Consulta Nutricional",
+      "valorBruto": 40000,
+      "valorFonasa": 16000,
+      "valorParticular": 40000,
+      "valorFinalConIVA": 47600
+    },
+    {
+      "id": "PM021",
+      "nombre": "Consulta Psicológica",
+      "valorBruto": 50000,
+      "valorFonasa": 20000,
+      "valorParticular": 50000,
+      "valorFinalConIVA": 59500
+    },
+    {
+      "id": "PM022",
+      "nombre": "Examen de Colesterol",
+      "valorBruto": 20000,
+      "valorFonasa": 8000,
+      "valorParticular": 20000,
+      "valorFinalConIVA": 23800
+    },
+    {
+      "id": "PM023",
+      "nombre": "Control de Embarazo",
+      "valorBruto": 55000,
+      "valorFonasa": 22000,
+      "valorParticular": 55000,
+      "valorFinalConIVA": 65450
+    },
+    {
+      "id": "PM024",
+      "nombre": "Extracción Dental",
+      "valorBruto": 70000,
+      "valorFonasa": 28000,
+      "valorParticular": 70000,
+      "valorFinalConIVA": 83300
+    },
+    {
+      "id": "PM025",
+      "nombre": "Limpieza Dental",
+      "valorBruto": 40000,
+      "valorFonasa": 16000,
+      "valorParticular": 40000,
+      "valorFinalConIVA": 47600
+    },
+    {
+      "id": "PM026",
+      "nombre": "Test de Embarazo",
+      "valorBruto": 10000,
+      "valorFonasa": 4000,
+      "valorParticular": 10000,
+      "valorFinalConIVA": 11900
+    },
+    {
+      "id": "PM027",
+      "nombre": "Consulta Dermatológica",
+      "valorBruto": 45000,
+      "valorFonasa": 18000,
+      "valorParticular": 45000,
+      "valorFinalConIVA": 53550
+    },
+    {
+      "id": "PM028",
+      "nombre": "Examen de Tiroides",
+      "valorBruto": 35000,
+      "valorFonasa": 14000,
+      "valorParticular": 35000,
+      "valorFinalConIVA": 41650
+    },
+    {
+      "id": "PM029",
+      "nombre": "Examen de Urocultivo",
+      "valorBruto": 30000,
+      "valorFonasa": 12000,
+      "valorParticular": 30000,
+      "valorFinalConIVA": 35700
+    },
+    {
+      "id": "PM030",
+      "nombre": "Fisioterapia Respiratoria",
+      "valorBruto": 45000,
+      "valorFonasa": 18000,
+      "valorParticular": 45000,
+      "valorFinalConIVA": 53550
+    },
+    {
+      "id": "PM031",
+      "nombre": "Consulta Neurológica",
+      "valorBruto": 60000,
+      "valorFonasa": 24000,
+      "valorParticular": 60000,
+      "valorFinalConIVA": 71400
+    },
+    {
+      "id": "PM032",
+      "nombre": "Consulta Pediátrica",
+      "valorBruto": 35000,
+      "valorFonasa": 14000,
+      "valorParticular": 35000,
+      "valorFinalConIVA": 41650
+    },
+    {
+      "id": "PM033",
+      "nombre": "Examen de Espermiograma",
+      "valorBruto": 20000,
+      "valorFonasa": 8000,
+      "valorParticular": 20000,
+      "valorFinalConIVA": 23800
+    },
+    {
+      "id": "PM034",
+      "nombre": "Examen de Triglicéridos",
+      "valorBruto": 25000,
+      "valorFonasa": 10000,
+      "valorParticular": 25000,
+      "valorFinalConIVA": 29750
+    }
+  ]
+}

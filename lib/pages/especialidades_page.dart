@@ -13,6 +13,10 @@ class _EspecialidadesPageState extends State<EspecialidadesPage> {
   List<dynamic> filteredResultados = [];
   TextEditingController _searchController = TextEditingController();
   bool isLoading = false;
+  List<String> especialidadesAutocomplete = [
+    'Dental', 'Radiología', 'Medicina General',
+    'Kinesiología', 'Maternidad', 'Cardiología'
+  ];
 
   @override
   void initState() {
@@ -44,28 +48,22 @@ class _EspecialidadesPageState extends State<EspecialidadesPage> {
 
   void _filterEspecialidades() {
     String query = _searchController.text.toLowerCase();
-    if (query.isEmpty) {
-      setState(() {
-        filteredResultados = [];
-      });
-    } else {
-      setState(() {
-        filteredResultados = especialidades.where((especialidad) {
-          final nombreEspecialidad = especialidad['nombre'].toLowerCase();
-          return nombreEspecialidad.contains(query);
-        }).expand((especialidad) {
-          return (especialidad['establecimientos'] as List).expand((establecimiento) {
-            return (establecimiento['profesionales'] as List).map((profesional) {
-              return {
-                'especialidad': especialidad['nombre'],
-                'establecimiento': establecimiento['nombre'],
-                'profesional': profesional,
-              };
-            });
+    setState(() {
+      filteredResultados = especialidades.where((especialidad) {
+        final nombreEspecialidad = especialidad['nombre'].toLowerCase();
+        return nombreEspecialidad.contains(query);
+      }).expand((especialidad) {
+        return (especialidad['establecimientos'] as List).expand((establecimiento) {
+          return (establecimiento['profesionales'] as List).map((profesional) {
+            return {
+              'especialidad': especialidad['nombre'],
+              'establecimiento': establecimiento['nombre'],
+              'profesional': profesional,
+            };
           });
-        }).toList();
-      });
-    }
+        });
+      }).toList();
+    });
   }
 
   @override
@@ -82,17 +80,35 @@ class _EspecialidadesPageState extends State<EspecialidadesPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: TextField(
-                    controller: _searchController,
-                    decoration: InputDecoration(
-                      labelText: 'Buscar especialidad',
-                      prefixIcon: Icon(Icons.search),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      filled: true,
-                      fillColor: Colors.grey[200],
-                    ),
+                  child: Autocomplete<String>(
+                    optionsBuilder: (TextEditingValue textEditingValue) {
+                      if (textEditingValue.text == '') {
+                        return const Iterable<String>.empty();
+                      }
+                      return especialidadesAutocomplete.where((String option) {
+                        return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                      });
+                    },
+                    onSelected: (String selection) {
+                      _searchController.text = selection;
+                    },
+                    fieldViewBuilder: (BuildContext context, TextEditingController fieldTextEditingController,
+                        FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
+                      _searchController = fieldTextEditingController;
+                      return TextField(
+                        controller: _searchController,
+                        focusNode: fieldFocusNode,
+                        decoration: InputDecoration(
+                          labelText: 'Buscar especialidad',
+                          prefixIcon: Icon(Icons.search),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                        ),
+                      );
+                    },
                   ),
                 ),
                 SizedBox(width: 16),

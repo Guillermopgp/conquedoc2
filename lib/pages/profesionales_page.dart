@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class ProfesionalesPage extends StatelessWidget {
   final Map<String, dynamic> profesional;
@@ -13,6 +14,9 @@ class ProfesionalesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isFemale = profesional['nombre'].toLowerCase().contains('dra.');
+    String imageAsset = isFemale ? 'assets/doctor1.png' : 'assets/doctor${Random().nextInt(2) + 2}.png';
+
     return Scaffold(
       appBar: AppBar(
         title: Text(profesional['nombre']),
@@ -29,12 +33,7 @@ class ProfesionalesPage extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 60,
-                    backgroundColor: Colors.cyan,
-                    child: Icon(
-                      Icons.person,
-                      size: 60,
-                      color: Colors.white,
-                    ),
+                    backgroundImage: AssetImage(imageAsset),
                   ),
                   SizedBox(height: 16),
                   Text(

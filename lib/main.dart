@@ -1,3 +1,4 @@
+import 'package:ConQueDoctor/pages/coberturas_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
               '/fichaMedica': (context) => FichaMedicaPage(),
               '/centrosMedicos': (context) => CentrosMedicosPage(),
               '/especialidades': (context) => EspecialidadesPage(),
+              '/coberturas': (context) => CoberturasPage(),
             },
           );
         },
