@@ -111,13 +111,14 @@ class _CentrosMedicosPageState extends State<CentrosMedicosPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Centros Médicos'),
+        backgroundColor: Colors.cyan,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('Buscar Lugares', style: TextStyle(fontSize: 24)),
+            Text('Buscar Lugares', style: TextStyle(fontSize: 24, color: Colors.cyan)),
             SizedBox(height: 16),
             Row(
               children: [
@@ -127,8 +128,13 @@ class _CentrosMedicosPageState extends State<CentrosMedicosPage> {
                     decoration: InputDecoration(
                       hintText: 'Buscar lugares...',
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.0),
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      prefixIcon: Icon(Icons.search, color: Colors.cyan),
                     ),
                   ),
                 ),
@@ -139,14 +145,24 @@ class _CentrosMedicosPageState extends State<CentrosMedicosPage> {
                       _searchPlaces(_searchController.text);
                     }
                   },
-                  child: Text('Buscar'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.cyan,
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                  ),
+                  child: Text(
+                    'Buscar',
+                    style: TextStyle(fontSize: 18),
+                  ),
                 ),
               ],
             ),
             SizedBox(height: 16),
             Expanded(
               child: isLoading
-                  ? Center(child: CircularProgressIndicator())
+                  ? Center(child: CircularProgressIndicator(color: Colors.cyan))
                   : ListView.builder(
                 itemCount: centrosMedicos.length,
                 itemBuilder: (context, index) {
@@ -177,7 +193,7 @@ class _CentrosMedicosPageState extends State<CentrosMedicosPage> {
           leading: Image.asset(assetPath, width: 50, height: 50),
           title: Text(nombre, style: TextStyle(fontSize: 18)),
           subtitle: Text(coordenadas),
-          trailing: Icon(Icons.map),
+          trailing: Icon(Icons.map, color: Colors.cyan),
         ),
       ),
     );

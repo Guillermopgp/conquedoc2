@@ -23,15 +23,16 @@ class _FichaMedicaPageState extends State<FichaMedicaPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Ficha Médica'),
+        backgroundColor: Colors.cyan,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(24.0),
         child: Form(
           key: _formKey,
           child: ListView(
             children: <Widget>[
               Center(
-                child: Icon(Icons.medical_services, size: 100, color: Colors.blue),
+                child: Icon(Icons.medical_services, size: 100, color: Colors.cyan),
               ),
               SizedBox(height: 20),
               Card(
@@ -42,48 +43,94 @@ class _FichaMedicaPageState extends State<FichaMedicaPage> {
                     children: <Widget>[
                       TextFormField(
                         initialValue: userProvider.nombreCompleto,
-                        decoration: InputDecoration(labelText: 'Nombre Completo'),
+                        decoration: InputDecoration(
+                          labelText: 'Nombre Completo',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                          prefixIcon: Icon(Icons.person, color: Colors.cyan),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                        ),
                         onSaved: (value) {
                           _nombreCompleto = value!;
                         },
                       ),
+                      SizedBox(height: 16),
                       TextFormField(
                         initialValue: userProvider.edad.toString(),
-                        decoration: InputDecoration(labelText: 'Edad'),
+                        decoration: InputDecoration(
+                          labelText: 'Edad',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                          prefixIcon: Icon(Icons.calendar_today, color: Colors.cyan),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                        ),
                         keyboardType: TextInputType.number,
                         onSaved: (value) {
                           _edad = int.parse(value!);
                         },
                       ),
+                      SizedBox(height: 16),
                       TextFormField(
                         initialValue: userProvider.sexo,
-                        decoration: InputDecoration(labelText: 'Sexo'),
+                        decoration: InputDecoration(
+                          labelText: 'Sexo',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                          prefixIcon: Icon(Icons.transgender, color: Colors.cyan),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                        ),
                         onSaved: (value) {
                           _sexo = value!;
                         },
                       ),
+                      SizedBox(height: 16),
                       TextFormField(
                         initialValue: userProvider.grupoSanguineo,
-                        decoration: InputDecoration(labelText: 'Grupo Sanguíneo'),
+                        decoration: InputDecoration(
+                          labelText: 'Grupo Sanguíneo',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                          prefixIcon: Icon(Icons.bloodtype, color: Colors.cyan),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                        ),
                         onSaved: (value) {
                           _grupoSanguineo = value!;
                         },
                       ),
+                      SizedBox(height: 16),
                       TextFormField(
                         initialValue: userProvider.enfermedadesBase,
-                        decoration: InputDecoration(labelText: 'Enfermedades Base'),
+                        decoration: InputDecoration(
+                          labelText: 'Enfermedades Base',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                          prefixIcon: Icon(Icons.local_hospital, color: Colors.cyan),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                        ),
                         onSaved: (value) {
                           _enfermedadesBase = value!;
                         },
                       ),
+                      SizedBox(height: 16),
                       CheckboxListTile(
                         title: Text('Donante de Órganos'),
-                        value: userProvider.donanteOrganos,
+                        value: _donanteOrganos,
                         onChanged: (value) {
                           setState(() {
                             _donanteOrganos = value!;
                           });
                         },
+                        activeColor: Colors.cyan,
                       ),
                       SizedBox(height: 20),
                       ElevatedButton(
@@ -101,7 +148,17 @@ class _FichaMedicaPageState extends State<FichaMedicaPage> {
                             Navigator.pop(context);
                           }
                         },
-                        child: Text('Guardar'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.cyan,
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4.0), // Radio pequeño para bordes rectangulares
+                          ),
+                        ),
+                        child: Text(
+                          'Guardar',
+                          style: TextStyle(fontSize: 18),
+                        ),
                       ),
                     ],
                   ),

@@ -14,57 +14,103 @@ class _RegisterPageState extends State<RegisterPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   bool _isLoading = false;
+  bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Registro')),
+      appBar: AppBar(
+        title: const Text('Registro'),
+        backgroundColor: Colors.cyan,
+      ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(
-                labelText: 'Correo electrónico',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.email),
+        padding: const EdgeInsets.all(24.0),
+        child: Form(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              SizedBox(height: 40),
+              Icon(
+                Icons.person_add,
+                size: 100,
+                color: Colors.cyan,
               ),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(
-                labelText: 'Contraseña',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.lock),
+              SizedBox(height: 40),
+              TextFormField(
+                controller: _emailController,
+                decoration: InputDecoration(
+                  labelText: 'Correo electrónico',
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                  prefixIcon: Icon(Icons.email, color: Colors.cyan),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                ),
+                keyboardType: TextInputType.emailAddress,
               ),
-              obscureText: true,
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _confirmPasswordController,
-              decoration: InputDecoration(
-                labelText: 'Confirmar contraseña',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.lock_outline),
+              const SizedBox(height: 20),
+              TextFormField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                  labelText: 'Contraseña',
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                  prefixIcon: Icon(Icons.lock, color: Colors.cyan),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.cyan,
+                    ),
+                    onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                ),
+                obscureText: _obscurePassword,
               ),
-              obscureText: true,
-            ),
-            const SizedBox(height: 24),
-            _isLoading
-                ? CircularProgressIndicator()
-                : ElevatedButton(
-              onPressed: _registerUser,
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
-                backgroundColor: Colors.blue,
+              const SizedBox(height: 20),
+              TextFormField(
+                controller: _confirmPasswordController,
+                decoration: InputDecoration(
+                  labelText: 'Confirmar contraseña',
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                  prefixIcon: Icon(Icons.lock_outline, color: Colors.cyan),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureConfirmPassword ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.cyan,
+                    ),
+                    onPressed: () => setState(() => _obscureConfirmPassword = !_obscureConfirmPassword),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                ),
+                obscureText: _obscureConfirmPassword,
               ),
-              child: const Text('Registrarse'),
-            ),
-          ],
+              const SizedBox(height: 30),
+              _isLoading
+                  ? Center(child: CircularProgressIndicator(color: Colors.cyan))
+                  : ElevatedButton(
+                onPressed: _registerUser,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.cyan,
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                ),
+                child: const Text(
+                  'Registrarse',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -77,34 +123,26 @@ class _RegisterPageState extends State<RegisterPage> {
       _isLoading = true;
     });
 
-    print("Iniciando proceso de registro"); // Log para depuración
-
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
 
-      print("Usuario creado exitosamente en Firebase Auth");
-
       if (userCredential.user != null) {
-        await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+        await _firestore.collection('users').doc(userCredential.user!.uid).set({
           'email': _emailController.text.trim(),
           'createdAt': FieldValue.serverTimestamp(),
         });
-        // Enviar correo de verificación
-        print("Enviando correo de verificación");
-        await userCredential.user!.sendEmailVerification();
 
-        print("Correo de verificación enviado");
-        await FirebaseAuth.instance.signOut();
+        await userCredential.user!.sendEmailVerification();
+        await _auth.signOut();
 
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Usuario registrado. Por favor, verifica tu correo electrónico.')),
         );
         Navigator.of(context).pushReplacementNamed('/login');
       }
-
     } on FirebaseAuthException catch (e) {
       _handleFirebaseAuthError(e);
     } catch (e) {
@@ -114,8 +152,6 @@ class _RegisterPageState extends State<RegisterPage> {
     setState(() {
       _isLoading = false;
     });
-
-    print("Proceso de registro finalizado");
   }
 
   bool _validateInputs() {

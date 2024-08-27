@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../providers/user_provider.dart';
-import 'centros_medicos_page.dart';
 
 class DashboardPage extends StatefulWidget {
   @override
@@ -28,10 +27,11 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
       drawer: Drawer(
         child: ListView(
+          padding: EdgeInsets.zero,
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Text(userProvider.name),
-              accountEmail: Text(userProvider.address),
+              accountName: Text(userProvider.name, style: TextStyle(color: Colors.white)),
+              accountEmail: Text(userProvider.address, style: TextStyle(color: Colors.white)),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage('assets/avatar.png'),
               ),
@@ -66,7 +66,7 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -106,7 +106,7 @@ class _DashboardPageState extends State<DashboardPage> {
               Expanded(
                 child: Text(
                   title,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.cyan[800]),
                 ),
               ),
               Icon(Icons.arrow_forward_ios, color: Colors.cyan),
@@ -116,4 +116,5 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
     );
   }
+
 }
